@@ -1,0 +1,3 @@
+class name of article div container cardChromeless u-marginTop20 u-paddingTop10 u-paddingBottom15 u-paddingLeft20 u-paddingRight20
+title class name of div (just grab h3 as there is a duplicate class underneath that has a subtitle in a h3) graf graf--h3 graf-after--figure graf--title
+div class name called for hand clap multirecommend js-actionMultirecommend u-flexCenter

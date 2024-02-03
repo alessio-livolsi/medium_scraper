@@ -62,4 +62,4 @@ The functionality of `medium_scraper.py` relies heavily on the HTML structure of
 2. **Update the CSS Selectors**: Modify the `soup.find_all()` calls in `medium_scraper.py` to use the updated CSS classes or element identifiers.
 3. **Test the Scraper**: Run the scraper again to ensure it's functioning correctly with the updated selectors.
 
-Enjoy 🙃
+## Enjoy 🙃

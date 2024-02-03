@@ -1,28 +1,13 @@
-# python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from collections import Counter
 import re
 
-# third party
-import pandas as pd
-from collections import Counter
 
-
+# Function to clean text and split into words
 def clean_and_split(text):
-    """
-    Cleans the input text by converting it to lowercase, removing any non-alphanumeric
-    characters (including punctuation), and splitting it into individual words. Common
-    stopwords are also removed from the resulting list of words.
-
-    Args:
-    text (str): The input text to be cleaned and split.
-
-    Returns:
-    list: A list of words after cleaning the input text and removing stopwords.
-    """
-    # Lowercase the input text and replace non-alphanumeric characters (excluding spaces)
-    # with a space, then split the text into a list of words based on whitespace.
     words = re.sub(r"\W+", " ", text.lower()).split()
-
-    # Define a list of common stopwords to be removed from the text.
     stopwords = [
         "the",
         "in",
@@ -39,37 +24,19 @@ def clean_and_split(text):
         "title",
         "found",
     ]
-
-    # Filter out the stopwords from the list of words.
-    words = [word for word in words if word not in stopwords]
-
-    return words
+    return [word for word in words if word not in stopwords]
 
 
+# Analyze keywords and publication popularity
 def analyze_medium_data(df):
-    """
-    Analyzes Medium articles dataset to identify patterns and insights.
-
-    - Extracts and analyzes the most common keywords in the titles of the most popular articles.
-    - Placeholder for future analysis to examine the correlation between publication dates and article popularity.
-    - Aggregates data by publication to identify which ones feature the most popular articles based on average claps.
-
-    Args:
-    df (pd.DataFrame): DataFrame containing Medium articles data.
-    """
-    # Extract the most popular articles based on claps for keyword analysis
     most_popular_articles = df.sort_values(by="claps", ascending=False).head(10)
-
-    # Extract and analyze keywords in titles
     keywords = Counter()
     for title in most_popular_articles["title"]:
         keywords.update(clean_and_split(title))
-
     print("Most common keywords in titles of the most popular articles:")
     for word, count in keywords.most_common(10):
         print(f"{word}: {count}")
 
-    # Aggregate data by publication to see which ones feature more popular articles
     publication_popularity = (
         df.groupby("publication")["claps"].mean().sort_values(ascending=False)
     )
@@ -77,10 +44,52 @@ def analyze_medium_data(df):
     print(publication_popularity)
 
 
-# Main script execution
-if __name__ == "__main__":
-    # Load the dataset
-    df = pd.read_csv("data/medium_data.csv")
+# Load the dataset
+df = pd.read_csv("data/medium_data.csv")
 
-    # Call the analysis function
-    analyze_medium_data(df)
+# Convert 'date' to datetime and extract 'month' and 'year'
+df["date"] = pd.to_datetime(df["date"])
+df["month"] = df["date"].dt.month
+df["year"] = df["date"].dt.year
+
+# Initial analysis
+analyze_medium_data(df)
+
+# Seasonal analysis for patterns in specific times of the year
+monthly_claps = df.groupby("month")["claps"].mean()
+# Assuming monthly_claps is already calculated
+plt.figure(figsize=(10, 6))
+ax = sns.barplot(x=monthly_claps.index, y=monthly_claps.values, palette="coolwarm")
+plt.title("Average Claps by Month")
+plt.xlabel("Month")
+plt.ylabel("Average Claps")
+plt.xticks(
+    ticks=range(0, 12),
+    labels=[
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+    ],
+)
+
+# Annotate each bar with the exact value
+for p in ax.patches:
+    ax.annotate(
+        format(p.get_height(), ".2f"),
+        (p.get_x() + p.get_width() / 2.0, p.get_height()),
+        ha="center",
+        va="center",
+        xytext=(0, 10),
+        textcoords="offset points",
+    )
+
+plt.show()

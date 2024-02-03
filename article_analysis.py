@@ -57,9 +57,12 @@ analyze_medium_data(df)
 
 # Seasonal analysis for patterns in specific times of the year
 monthly_claps = df.groupby("month")["claps"].mean()
-# Assuming monthly_claps is already calculated
+
+# Set the color palette globally
+sns.set_palette("coolwarm")
+
 plt.figure(figsize=(10, 6))
-ax = sns.barplot(x=monthly_claps.index, y=monthly_claps.values, palette="coolwarm")
+ax = sns.barplot(x=monthly_claps.index, y=monthly_claps.values)
 plt.title("Average Claps by Month")
 plt.xlabel("Month")
 plt.ylabel("Average Claps")

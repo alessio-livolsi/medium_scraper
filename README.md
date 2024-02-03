@@ -33,7 +33,7 @@ The collected data is then saved into a CSV file within a `data` directory for o
       "UX Collective": "https://uxdesign.cc/archive/{0}/{1:02d}/{2:02d}",
       # Add or remove publications as desired
   }
-
+  
 ## The Analysis Script
 Following data collection, the analysis script `medium_analysis.py` loads the scraped data to perform several analyses:
 - Identifies the most popular articles based on claps.
@@ -61,3 +61,5 @@ The functionality of `medium_scraper.py` relies heavily on the HTML structure of
 1. **Inspect the Medium Page**: Use your browser's developer tools to inspect the article elements on Medium and identify the new CSS classes or HTML structure.
 2. **Update the CSS Selectors**: Modify the `soup.find_all()` calls in `medium_scraper.py` to use the updated CSS classes or element identifiers.
 3. **Test the Scraper**: Run the scraper again to ensure it's functioning correctly with the updated selectors.
+
+Enjoy 🙃

@@ -33,7 +33,6 @@ The collected data is then saved into a CSV file within a `data` directory for o
       "UX Collective": "https://uxdesign.cc/archive/{0}/{1:02d}/{2:02d}",
       # Add or remove publications as desired
   }
-```
 
 ## The Analysis Script
 Following data collection, the analysis script `medium_analysis.py` loads the scraped data to perform several analyses:

@@ -1,13 +1,13 @@
 # Medium Scraper
 
-This project contains scripts for scraping Medium articles from selected publications and analyzing trends in their popularity. 
+This project contains scripts for scraping Medium articles from selected publications and analysing trends in their popularity. 
 It features a Python scraper to collect data and a subsequent analysis script to identify patterns in claps (likes/upvotes) and the impact of publication timing.
 
 ## Installation and Setup
 
 ### Setting Up a Virtual Environment
 
-Before installing the required packages, it's recommended to use a virtual environment.
+Before installing the required packages, it's recommended to use a virtual environment. Then run:
 `pip install -r requirements.txt`
 
 ## The Scraper Script
@@ -23,26 +23,27 @@ The collected data is then saved into a CSV file within a `data` directory for o
 
 ### Customizing the Script
 
-- **Saving Data**: By default, the scraped data is saved to `medium_data.csv` within a `data` directory. Ensure this directory exists in your project structure or modify the script to create it if not present.
+- **Saving Data**: By default, the scraped data is saved to `medium_data.csv` within a `data` directory. If the directory does not exist in your project structure, the script will create it if not present.
   
 - **Changing Publication URLs**: The `urls` dictionary within the script contains the Medium publication URLs to be scraped. You can customize this list by adding or removing entries based on the publications you're interested in. For example:
 
-  ```python
+  ```
   urls = {
       "Towards Data Science": "https://towardsdatascience.com/archive/{0}/{1:02d}/{2:02d}",
       "UX Collective": "https://uxdesign.cc/archive/{0}/{1:02d}/{2:02d}",
       # Add or remove publications as desired
   }
+```
 
 ## The Analysis Script
 Following data collection, the analysis script `medium_analysis.py` loads the scraped data to perform several analyses:
 - Identifies the most popular articles based on claps.
-- Analyzes common keywords in article titles.
+- Analyses common keywords in article titles.
 - Performs a seasonal analysis to examine trends in article popularity over different months.
 
 ### Key Features:
 - Uses `Pandas` for data manipulation.
-- Employs `Matplotlib` and `Seaborn` for visualizing trends in data.
+- Employs `Matplotlib` and `Seaborn` for visualising trends in data.
 - Identifies key patterns in article popularity and publication timing.
 
 ## Getting Started

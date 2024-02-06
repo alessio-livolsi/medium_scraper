@@ -21,7 +21,7 @@ The collected data is then saved into a CSV file within a `data` directory for o
 - Handles date conversion and leap years.
 - Extracts article titles, publication dates, and clap counts.
 
-### Customizing the Script
+### Customising the Script
 
 - **Saving Data**: By default, the scraped data is saved to `medium_data.csv` within a `data` directory. If the directory does not exist in your project structure, the script will create it if not present.
   
@@ -33,6 +33,15 @@ The collected data is then saved into a CSV file within a `data` directory for o
       "UX Collective": "https://uxdesign.cc/archive/{0}/{1:02d}/{2:02d}",
       # Add or remove publications as desired
   }
+
+### Adjusting Data Collection
+To adjust the scope of your scraping, you can modify the range of days for which articles are fetched. By default, the script is set to collect articles for every day of the year, as shown in the line:
+`selected_days = list(range(1, 367 if is_leap(year) else 366))`
+
+This configuration ensures that the scraper attempts to retrieve articles for each day in a year, accounting for leap years as well. However, you might want to limit your scraping to a subset of days to reduce execution time or focus on specific periods. For example, to randomly select 50 days out of the year while considering leap years, you can replace the above line with:
+`selected_days = random.sample(range(1, 367 if is_leap(year) else 366), 50)`
+
+This adjustment allows for more flexible data collection by enabling you to control the number of articles you scrape based on the days of the year you're most interested in.
   
 ## The Analysis Script
 Following data collection, the analysis script `medium_analysis.py` loads the scraped data to perform several analyses:

@@ -130,7 +130,7 @@ def get_claps(claps_str):
 # Set the target year for scraping.
 year = 2023
 # Randomly select 50 days from the year, accounting for leap years.
-selected_days = random.sample(range(1, 367 if is_leap(year) else 366), 50)
+selected_days = list(range(1, 367 if is_leap(year) else 366))
 
 # Initialize an empty list to store data collected from each article.
 data = []
@@ -187,8 +187,8 @@ for d in tqdm(selected_days, desc="Processing days"):
 df = pd.DataFrame(data)
 
 # Ensure the 'data' directory exists
-if not os.path.exists('data'):
-    os.makedirs('data')
+if not os.path.exists("data"):
+    os.makedirs("data")
 
 # Save the DataFrame to a CSV file for later use or analysis.
 df.to_csv("data/medium_data.csv", index=False)

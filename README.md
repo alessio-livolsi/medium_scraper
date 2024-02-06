@@ -36,10 +36,12 @@ The collected data is then saved into a CSV file within a `data` directory for o
 
 ### Adjusting Data Collection
 To adjust the scope of your scraping, you can modify the range of days for which articles are fetched. By default, the script is set to collect articles for every day of the year, as shown in the line:
-`selected_days = list(range(1, 367 if is_leap(year) else 366))`
+```
+selected_days = list(range(1, 367 if is_leap(year) else 366)
 
 This configuration ensures that the scraper attempts to retrieve articles for each day in a year, accounting for leap years as well. However, you might want to limit your scraping to a subset of days to reduce execution time or focus on specific periods. For example, to randomly select 50 days out of the year while considering leap years, you can replace the above line with:
-`selected_days = random.sample(range(1, 367 if is_leap(year) else 366), 50)`
+```
+selected_days = random.sample(range(1, 367 if is_leap(year) else 366), 50)
 
 This adjustment allows for more flexible data collection by enabling you to control the number of articles you scrape based on the days of the year you're most interested in.
   

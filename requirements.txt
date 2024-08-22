@@ -1,6 +1,6 @@
 beautifulsoup4==4.12.3
 pandas==2.0.3
-requests==2.31.0
+requests==2.32.3
 tqdm==4.66.5
 seaborn==0.13.2
 pillow~=10.3.0

@@ -3,6 +3,6 @@ pandas==2.0.3
 requests==2.31.0
 tqdm==4.66.5
 seaborn==0.13.2
-pillow~=10.3.0
+pillow~=10.4.0
 selenium==4.17.2
 undetected-chromedriver==3.5.4
